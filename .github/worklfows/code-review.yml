@@ -1,0 +1,19 @@
+name: code review
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  code_review:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: check out repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # fetch all of the git history
+
+    - name: helloworld
+      run: echo "hello world"
