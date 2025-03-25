@@ -26,6 +26,8 @@ jobs:
 
         git_diff=$(cat diff.txt)
         echo "DIFF=$git_diff" >> $GITHUB_ENV
+        
+        echo ${{env.DIFF}}
 
 
     - name: review to pull request
