@@ -15,5 +15,5 @@ jobs:
       with:
         fetch-depth: 0 # fetch all of the git history
 
-    - name: helloworld
+    - name: hello world
       run: echo "hello world"
