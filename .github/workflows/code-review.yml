@@ -38,7 +38,7 @@ jobs:
       env: 
         DIFF_CONTENT: ${{env.DIFF}}
       with:
-        gitub-token: ${{ secrets.SATELLITE_TOKEN }}
+        gitbub-token: ${{ secrets.SATELLITE_TOKEN }}
         script: |
           const content = process.env.DIFF_CONTENT
           console.log("issue number : " + context.issue.number)
