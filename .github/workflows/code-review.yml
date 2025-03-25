@@ -22,4 +22,4 @@ jobs:
         echo $(git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }})
 
         git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }} > diff.txt
-        cat $(diff.txt)
+        cat diff.txt
