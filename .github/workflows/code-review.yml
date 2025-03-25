@@ -13,5 +13,11 @@ jobs:
       with:
         fetch-depth: 0 # fetch all of the git history
 
-    - name: hello world
-      run: echo "hello world"
+    - name: git diff
+      run: |
+        git fetch origin
+        
+        echo ${{ github.event.pull_request.base.sha }}
+        echo ${{ github.event.pull_request.head.sha }}
+
+        git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > diff.txt
