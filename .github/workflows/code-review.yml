@@ -38,14 +38,17 @@ jobs:
       env: 
         DIFF_CONTENT: ${{env.DIFF}}
       with:
+        gitub-token: ${{ secrets.SATELLITE_TOKEN }}
         script: |
           const content = process.env.DIFF_CONTENT
-          console.log("issue number" + context.issue.number)
+          console.log("issue number : " + context.issue.number)
+          console.log("owner : " + context.repo.owner)
+          console.log("repo : " + context.repo.repo)
 
           github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `${content}`
+            body: "hello world"
           })
       
