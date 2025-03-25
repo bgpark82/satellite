@@ -3,7 +3,7 @@ name: code review
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   code_review:
