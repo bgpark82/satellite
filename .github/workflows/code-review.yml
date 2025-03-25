@@ -19,6 +19,7 @@ jobs:
 
         echo "Before commit SHA: ${{ github.event.before }}"
         echo "After commit SHA: ${{ github.event.after }}"
+        echo $(git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }})
 
         git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }} > diff.txt
         cat $(diff.txt)
