@@ -1,7 +1,7 @@
 name: code review
 
 on:
-  push:
+  pull_request:
 
 jobs:
   code_review:
@@ -23,3 +23,24 @@ jobs:
 
         git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }} > diff.txt
         cat diff.txt
+
+        git_diff = $(cat diff.txt)
+        echo "DIFF=$git_diff" >> $GITHUB_ENV
+
+
+    - name: review to pull request
+      uses: actions/github-script@v6
+      env: 
+        DIFF_CONTENT: ${{env.DIFF}}
+      with:
+        script: |
+          const content = process.env.DIFF_CONTENT
+          console.log("issue number" + context.issue.number)
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `${content}`
+          })
+      
