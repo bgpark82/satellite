@@ -25,7 +25,9 @@ jobs:
         # cat diff.txt
 
         git_diff=$(cat diff.txt)
-        echo "DIFF=$git_diff" >> $GITHUB_ENV
+        echo "DIFF<<EOF" >> $GITHUB_ENV
+        echo "$git_diff" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
         
         echo "환경변수 확인"
         echo ${{env.DIFF}}
