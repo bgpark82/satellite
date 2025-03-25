@@ -17,11 +17,11 @@ jobs:
       run: |
         git fetch origin
 
-        echo "Before commit SHA: ${{ github.event.before }}"
-        echo "After commit SHA: ${{ github.event.after }}"
-        echo $(git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }})
+        echo "Before commit SHA: ${{ github.event.pull_request.base.sha }}"
+        echo "After commit SHA: ${{ github.event.pull_request.head.sha }}"
+        echo $(git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
 
-        git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }} > diff.txt
+        git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > diff.txt
         cat diff.txt
 
         git_diff = $(cat diff.txt)
