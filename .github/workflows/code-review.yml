@@ -16,8 +16,9 @@ jobs:
     - name: git diff
       run: |
         git fetch origin
-        
-        echo ${{ github.event.pull_request.base.sha }}
-        echo ${{ github.event.pull_request.head.sha }}
 
-        git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > diff.txt
+        echo "Before commit SHA: ${{ github.event.before }}"
+        echo "After commit SHA: ${{ github.event.after }}"
+
+        git diff --unified=3 ${{ github.event.before }} ${{ github.event.after }} > diff.txt
+        cat $(diff.txt)
