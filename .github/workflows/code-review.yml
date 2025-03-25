@@ -22,11 +22,12 @@ jobs:
         echo $(git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }})
 
         git diff --unified=3 ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > diff.txt
-        cat diff.txt
+        # cat diff.txt
 
         git_diff=$(cat diff.txt)
         echo "DIFF=$git_diff" >> $GITHUB_ENV
         
+        echo "환경변수 확인"
         echo ${{env.DIFF}}
 
 
