@@ -2,8 +2,6 @@ name: code review
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   code_review:
