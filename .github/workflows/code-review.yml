@@ -63,6 +63,7 @@ jobs:
         # 'git diff'에서 변경된 라인만 필터링하여 'added_lines.txt'에 저장
         grep "^+" diff.txt | grep -v "^+++" | grep -v "^+@@" > added_lines.txt
         cat added_lines.txt  # 추출된 라인 확인
+
     - name: Create comments from added lines
       uses: actions/github-script@v7
       with:
@@ -75,6 +76,7 @@ jobs:
           let lineNumber = null;
 
           addedLines.forEach(line => {
+            console.log("----------> line : " + line)
             if (line.startsWith('+++') || line.startsWith('---')) {
               currentFile = line.split(' ')[1].trim();
             }
