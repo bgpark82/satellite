@@ -87,6 +87,8 @@ jobs:
               }
             }
             if (line.startsWith('+') && !line.startsWith('+++')) {
+              console.log("----------> currentFile : " + currentFile)
+              console.log("----------> lineNumber : " + lineNumber)
               if (currentFile && lineNumber !== null) {
                 comments.push({
                   path: currentFile,
