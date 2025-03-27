@@ -81,13 +81,15 @@ jobs:
 
           addedLines.forEach(line => {
             console.log("----------> line : " + line)
-            if (line.startsWith('+++') || line.startsWith('---')) {
-              currentFile = line.split(' ')[1].trim();
+            if (line.startsWith('+++')) {
+              currentFile = line.substring(line.indexOf('b/') + 2).trim();
+              console.log("----------> Found file path: " + currentFile);
             }
             if (line.startsWith('@@')) {
               const match = line.match(/@@ -\d+,\d+ \+(\d+),/);
               if (match) {
                 lineNumber = parseInt(match[1]);
+                console.log("----------> Found line number: " + lineNumber);
               }
             }
             if (line.startsWith('+') && !line.startsWith('+++')) {
